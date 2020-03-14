@@ -1,3 +1,4 @@
+#this is my view.py file
 from django.shortcuts import render
 
 from django.http import HttpResponse
