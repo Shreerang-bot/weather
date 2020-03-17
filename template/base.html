@@ -9,7 +9,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>www.airquality.com</title>
+    <style>
+      .good {background-color: #32CD32;}
+      .Moderate {background-color: #FFFF00;}
+      .Unhealthy For Sensitive Group {background-color: #FF8C00;}
+      .Unhealthy {background-color: #FF0000;}
+      .Very Unhealthy {background-color: #8B008B;}
+      .Hazardous {background-color: #800000;}
+    </style>
+
   </head>
   <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -24,8 +33,10 @@
             <a class="nav-link" href="{% url 'about' %}">About</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+
+        <form action="{% url 'Home' %}" class="form-inline my-2 my-lg-0" method="POST">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2" type="search" placeholder="Enter City Name" aria-label="Search" name="city">
           <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>

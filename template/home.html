@@ -1,11 +1,65 @@
 
 {% extends 'base.html' %}
-
-
-
 {% block content %}
 
-<h1>Hello {{name}}!!!</h1>
+{% if city %}
+    {{ city }}
+{% endif %}
+
+{% if api %}
+    {% if api == "Error..." %}
+        Error !!! Please Try Again ....
+    {% else %}
+
+    {% if api.data.current.pollution.aqius <= 50 %}
+    <div class="jumbotron good">
+          <h1 class="display-4">Good</h1>
+          <p class="lead">Current {{ api.data.city }} Air Quality : {{ api.data.current.pollution.aqius }} </p>
+          <hr class="my-4">
+          <p>(0 - 50) Air quality is considered satisfactory, and air pollution poses little or no risk. </p>
+    </div>
+
+    {% elif api.data.current.pollution.aqius > 50 and api.data.current.pollution.aqius <= 100 %}
+    <div class="jumbotron Moderate">
+          <h1 class="display-4">Moderate</h1>
+          <p class="lead">Current {{ api.data.city }} Air Quality : {{ api.data.current.pollution.aqius }} </p>
+          <hr class="my-4">
+          <p>(51 - 100) Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution. </p>
+    </div>
+    {% elif api.data.current.pollution.aqius > 100 and api.data.current.pollution.aqius <= 150 %}
+    <div class="jumbotron Unhealthy For Sensitive Group">
+          <h1 class="display-4">Unhealthy For Sensitive Group</h1>
+          <p class="lead">Current {{ api.data.city }} Air Quality : {{ api.data.current.pollution.aqius }} </p>
+          <hr class="my-4">
+          <p>(101 - 151) Although general public is not likely to be affected at this AQI range, people with lung disease, older adults and children are at a greater risk from exposure to ozone, whereas persons with heart and lung disease, older adults and children are at greater risk from the presence of particles in the air.  </p>
+    </div>
+    {% elif api.data.current.pollution.aqius > 150 and api.data.current.pollution.aqius <= 200 %}1
+    <div class="jumbotron Unhealthy">
+          <h1 class="display-4">Unhealthy</h1>
+          <p class="lead">Current {{ api.data.city }} Air Quality : {{ api.data.current.pollution.aqius }} </p>
+          <hr class="my-4">
+          <p>(151 - 200) Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects. </p>
+    </div>
+    {% elif api.data.current.pollution.aqius > 200 and api.data.current.pollution.aqius <= 250 %}
+    <div class="jumbotron Very Unhealthy">
+          <h1 class="display-4">Very Unhealthy</h1>
+          <p class="lead">Current {{ api.data.city }} Air Quality : {{ api.data.current.pollution.aqius }} </p>
+          <hr class="my-4">
+          <p>(201 - 250) Health alert: everyone may experience more serious health effects. </p>
+    </div>
+    {% elif api.data.current.pollution.aqius > 250 and api.data.current.pollution.aqius <= 300 %}
+     <div class="jumbotron Hazardous">
+          <h1 class="display-4">Hazardous</h1>
+          <p class="lead">Current {{ api.data.city }} Air Quality : {{ api.data.current.pollution.aqius }} </p>
+          <hr class="my-4">
+          <p>(251 - 300) Health warnings of emergency conditions. The entire population is more likely to be affected. </p>
+    </div>
+    {% endif %}
+
+
+    {% endif %}
+{% endif %}
+
 {% endblock %}
 
 
